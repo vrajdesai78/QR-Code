@@ -16,9 +16,9 @@
     }
 
     .button {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
+        margin-left: 10px;
+        margin-right: 10px;
+        display: inline-block;
         padding: 15px 25px;
         font-size: 24px;
         cursor: pointer;
@@ -42,7 +42,7 @@
         transform: translateY(4px);
     }
 
-    div {
+    .container {
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -52,17 +52,35 @@
         border: 15px solid #050050;
         padding: 30px;
     }
+
+    .row {
+        text-align: center;
+        margin-left: -20px;
+        margin-right: -20px;
+    }
 </style>
 
 <body>
-    <div>
+    <div class="container">
         <img id="qr" src="data:image/jpeg;base64, {{img}}">
-        <button id="generate" class="button">Generate New QR</button>
+        <div class="row">
+            <button id="save" class="button">Save QR Code</button>
+            <button id="generate" class="button">Generate New QR</button>
+        </div>
+
     </div>
 </body>
 <script>
-    document.getElementById("generate").onclick = function() {
+    document.getElementById("generate").onclick = function () {
         location.href = "/home"
     }
+    //Download image on button click
+    document.getElementById("save").onclick = function () {
+        var link = document.createElement('a');
+        link.download = "qr.png";
+        link.href = document.getElementById("qr").src;
+        link.click();
+    }
 </script>
+
 </html>
